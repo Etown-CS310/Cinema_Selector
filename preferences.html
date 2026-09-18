@@ -18,7 +18,38 @@
             <a href="preferences.html">My Preferences</a>
         </div>
     </header>
+    
+    <h1>Movie Preferences</h1>
     <p>This is where the user can update their preferences</p>
+
+    <form>
+        <label for="genre">Favorite Genre:</label>
+        <select id="genre" name="genre">
+            <option value="">--Select a genre--</option>
+            <option value="action">Action</option>
+            <option value="comedy">Comedy</option>
+            <option value="drama">Drama</option>
+            <option value="horror">Horror</option>
+            <option value="romance">Romance</option>
+            <option value="scifi">Sci-Fi</option>
+            <option value="thriller">Thriller</option>
+        </select>
+
+        <br><br>
+
+        <label for="rating">Minimum Rating:</label>
+        <input type="number" id="rating" name="rating" min="0" max="10" step="0.5" placeholder="ex. 7">
+        
+        <br><br>
+
+        <label>
+            <input type="checkbox" name="family_friendly">Family-Friendly Movies Only!
+        </label>
+
+        <br><br>
+
+        <button type="submit">Update Preferences</button>
+    </form>
 </body>
 
 </html>
