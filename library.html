@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <header>
+    <h1>Cinema Selector</h1>
     <div class="nav">
         <a href="index.html">Randomizer</a>
         <a href="history.html">Watch History</a>
@@ -18,7 +19,53 @@
 </header>
 
 <body>
+    <h1>My Movie Library</h1>
     <p>This is where the user can see all their movie options.</p>
+    <div class="Search and Sort">
+        <label for="search">Search:</label>
+        <input type="text" id="searchBar" placeholder="Search your movies...">
+
+        <label for="sortMovies">Sort by: </label>
+        <select id="sortMovies">
+            <option value="newest" selected>Newest First</option>
+            <option value="oldest">Oldest First</option>
+            <!-- These could get moved to their own drop downs -->
+            <optgroup label="By Genre">
+                <option value="action">Action</option>
+                <option value="comedy">Comedy</option>
+                <option value="drama">Drama</option>
+                <option value="horror">Horror</option>
+                <option value="romance">Romance</option>
+                <option value="scifi">Sci-Fi</option>
+                <option value="thriller">Thriller</option>
+                <option value="fantasy">Fantasy</option>
+                <option value="family">Family</option>
+            </optgroup>
+            <optgroup label="Rating">
+                <option value="g">G</option>
+                <option value="pg">PG</option>
+                <option value="pg-13">PG-13</option>
+                <option value="r">R</option>
+            </optgroup>
+        </select>
+    </div>
+    <div class="shelfInfo">
+        <div class="movieTotal">
+            <h3>Total Number of Movies:</h3>
+            <h2>#</h2>
+            <p>Movies in collection</p>
+        </div>
+        <div class="unwatched">
+            <h3>Total Number of Unwatched Movies:</h3>
+            <h2>#</h2>
+            <p>Movies still to watch</p>
+        </div>
+        <div class="runtime">
+            <h3>Total movie runtime</h3>
+            <h2>#</h2>
+            <p>hours watched</p>
+        </div>
+    </div>
     <div class="movie-display">
         <div class="movie-info">
             <div class="movie-header">

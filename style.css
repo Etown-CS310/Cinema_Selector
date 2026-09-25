@@ -39,6 +39,7 @@ a{
     padding: 16px;
     background-color: #E7D7C1;
     border-radius: 16px;
+    margin-top: 30px;
 }
 
 .movie-info{
@@ -74,4 +75,19 @@ a{
     display: flex;
     align-items: center;
     gap: 4px;
+}
+
+.shelfInfo{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    gap: 10px;
+    width: 80%;
+    margin-top: 15px;
+}
+
+.shelfInfo div{
+    background-color: #a78a7f;
+    width: 600px;
+    padding: 25px;
 }
