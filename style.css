@@ -1,3 +1,43 @@
+/* Cinema Selector - base styles
+Palette: cream #E7D7C1, red #DD2D4A, dark red #8c1c13, mauve #a78a7f
+*/
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0 30px 60px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: #FAF3E7;
+    color: #3b2a24;
+}
+
+h1 {
+    font-size: 50px;
+    padding-top: 25px;
+}
+
+h1, h2, h3 {
+    color: #8c1c13;
+    font-weight: 600;
+}
+
+p {
+    color: #5c473f;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+}
+
+
+/*
+navigation
+*/
+
 .nav{
     background-color: #DD2D4A;
     align-items: center;
@@ -8,17 +48,51 @@
 
 a:hover{
     color: #a78a7f;
+    background-color: rgba(255, 255, 255, 0.15);
 }
 
-a{
+a {
     color: #E7D7C1;
+    text-decoration: none;
     padding: 8px 16px;
     border-radius: 9999px;
     font-size: large;
     font-weight: 500;
-    /* transition: color 0.2s ease, background-color 0.2s ease; */
+    transition: color 0.2s ease, background-color 0.2 ease;
 }
 
+
+/*
+search/sort controls
+*/
+
+label {
+    font-weight: 500;
+    color: #8c1c13;
+    margin-right: 6px;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    font-family: inherit;
+    font-size: 15px;
+    padding: 8px 12px;
+    border: 1px solid #d8c3a5;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #3b2a24;
+    margin-right: 20px;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+    outline: none;
+    border-color: #DD2D4A;
+}
+
+/*
 .header{
     display: flex;
     align-items: center;
@@ -30,6 +104,12 @@ a{
     align-items: center;
     gap: 12px;
 }
+    */
+
+
+/*
+movie cards
+*/
 
 .movie-display{
     display: flex;
@@ -77,6 +157,19 @@ a{
     gap: 4px;
 }
 
+.details {
+    color: #5c473f;
+}
+
+.stars {
+    color: #DD2D4A;
+    font-weight: 600;
+}
+
+/*
+library stats
+*/
+
 .shelfInfo{
     display: flex;
     align-items: center;
@@ -90,4 +183,56 @@ a{
     background-color: #a78a7f;
     width: 600px;
     padding: 25px;
+}
+
+
+.shelfInfo h3 {
+    color: #fff;
+    font-size: 15px;
+    margin: 0 0 8px;
+}
+
+.shelfInfo h2 {
+    color: #fff;
+    font-size: 32px;
+    margin: 0 0 4px;
+}
+
+.shelfInfo p {
+    color: #f1e7dc;
+    font-size: 13px;
+    margin: 0;
+}
+
+
+/*
+preferences form
+*/
+
+form {
+    background-color: #E7D7C1;
+    padding: 24px 28px;
+    border-radius: 16px;
+    max-width: 420px;
+    margin-top: 20px;
+}
+
+form input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+button[type="submit"] {
+    background-color: #DD2D4A;
+    color: #fff;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 9999px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #8c1c13;
 }
