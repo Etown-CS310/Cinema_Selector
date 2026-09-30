@@ -1,6 +1,6 @@
 // movies
 
-const movieInvetory = [
+const movieInventory = [
     { title: "The Odyssey", year: 2026, director: "Christopher Nolan", 
         rating: 8.4, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRriIyTNYRDfuTTJ_df1I3qoM49oy4OKQguEveov3cb8Q&s=10" },
     { title: "Mad Max: Fury Road", year: 2015, director: "George Miller", rating: 8.1, 
