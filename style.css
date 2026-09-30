@@ -138,6 +138,19 @@ movie cards
     gap: 4px;
 }
 
+movie-content {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    gap: 16px;
+}
+
+movie-poster {
+    width: 100px;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
 .title{
     display: flex;
     align-items: center;
