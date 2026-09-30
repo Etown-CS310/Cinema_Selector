@@ -112,6 +112,9 @@ movie cards
 */
 
 .movie-display{
+    flex: 1;
+    min-width: 260px;
+    /*
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -120,6 +123,7 @@ movie cards
     background-color: #E7D7C1;
     border-radius: 16px;
     margin-top: 30px;
+    */
 }
 
 .movie-info{
@@ -138,15 +142,23 @@ movie cards
     gap: 4px;
 }
 
-movie-content {
+#movie-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.movie-content {
     display: flex;
     align-items: flex-start;
     width: 100%;
     gap: 16px;
 }
 
-movie-poster {
-    width: 100px;
+.movie-poster {
+    width: 250px;
+    height: 300px;
+    object-fit: cover;
     border-radius: 8px;
     flex-shrink: 0;
 }
