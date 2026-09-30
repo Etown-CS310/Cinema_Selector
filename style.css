@@ -261,3 +261,20 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #8c1c13;
 }
+
+.myPreferences{
+    background-color: #E7D7C1;
+    padding: 24px 28px;
+    border-radius: 16px;
+    margin-top: 20px;
+    flex-grow: 1;
+}
+
+.prefs{
+    display:flex;
+    gap: 12px;
+}
+
+#fam{
+    color: #DD2D4A;
+}

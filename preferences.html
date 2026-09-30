@@ -7,6 +7,7 @@
     <title>Preferences</title>
 
     <link rel="stylesheet" href="style.css">
+    <script src="lib_pref.js"></script>
 </head>
 
 <body>
@@ -19,38 +20,61 @@
             <a href="preferences.html">My Preferences</a>
         </div>
     </header>
-    
+
     <h2>Movie Preferences</h2>
     <p>This is where the user can update their preferences</p>
 
-    <form>
-        <label for="genre">Favorite Genre:</label>
-        <select id="genre" name="genre">
-            <option value="">--Select a genre--</option>
-            <option value="action">Action</option>
-            <option value="comedy">Comedy</option>
-            <option value="drama">Drama</option>
-            <option value="horror">Horror</option>
-            <option value="romance">Romance</option>
-            <option value="scifi">Sci-Fi</option>
-            <option value="thriller">Thriller</option>
-        </select>
+    <div class="prefs">
+        <form>
+            <label for="genre">Favorite Genre:</label>
+            <select id="genre" name="genre">
+                <option value="">--Select a genre--</option>
+                <option value="Action">Action</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Drama">Drama</option>
+                <option value="Horror">Horror</option>
+                <option value="Romance">Romance</option>
+                <option value="Scifi">Sci-Fi</option>
+                <option value="Thriller">Thriller</option>
+            </select>
 
-        <br><br>
+            <br><br>
 
-        <label for="rating">Minimum Rating:</label>
-        <input type="number" id="rating" name="rating" min="0" max="10" step="0.5" placeholder="ex. 7">
-        
-        <br><br>
+            <label for="rating">Minimum Rating:</label>
+            <input type="number" id="rating" name="rating" min="0" max="10" step="0.5" placeholder="ex. 7">
 
-        <label>
-            <input type="checkbox" name="family_friendly">Family-Friendly Movies Only!
-        </label>
+            <br><br>
 
-        <br><br>
+            <label>
+                <input type="checkbox" name="family_friendly">Family-Friendly Movies Only!
+            </label>
 
-        <button type="submit">Update Preferences</button>
-    </form>
+            <br><br>
+
+            <button type="submit" class="preferences">Update Preferences</button>
+        </form>
+
+        <!-- Add a way to remove things from preferences -->
+        <div class="myPreferences">
+            <h2>My Preferences</h2>
+            <h3>Minimum Rating: <span id="minRating">4</span>/10 </h3>
+            <br>
+
+            <h3>My Favorite Genres:</h3>
+            <ul class="favGenres">
+                <li class="movieGenre">Action</li>
+                <li class="movieGenre">Comedy</li>
+                <li class="movieGenre">Romance</li>
+            </ul>
+
+            <br>
+            <h3>Family Friendly Only: <span id="fam">On</span> </h3>
+        </div>
+        <div class="Blocked Movies">
+            <h2>Movies that you have blocked</h2>
+            <p>These will not appear in your search.</p>
+        </div>
+    </div>
 </body>
 
 </html>
