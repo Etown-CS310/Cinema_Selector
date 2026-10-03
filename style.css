@@ -192,6 +192,23 @@ movie cards
 }
 
 /*
+history page
+*/
+.history-poster {
+    width: 250px;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+}
+
+.history-card {
+    background-color: #E7D7C1;
+    padding: 16px;
+    border: none;
+}
+
+/*
 library stats
 */
 

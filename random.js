@@ -1,11 +1,8 @@
-// This file takes care of both the JS in the index/randomizer page and the watch history.
+// This file takes care of the JS on the randomizer/index page.
 
 // TODO: replace this with a real fetch() once database is in place
 // for now, posters are shown through URLs
 
-/*
-    CODE BELOW IS FOR rand_hist.js FILE:
-*/
 function starsForRating(rating) {
     const full = Math.round(rating / 2);
     return "★".repeat(full) + "☆".repeat(5 - full);
