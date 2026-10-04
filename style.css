@@ -36,6 +36,12 @@ p {
 header {
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    padding-top: 0;
 }
 
 
