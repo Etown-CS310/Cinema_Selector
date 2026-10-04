@@ -19,8 +19,9 @@ No installs, npm packages, or environment setups are needed at this stage yet.
 # Screenshots
 ![Randomizer Image](randomizer_pg.png)
 ![History Page](history_pg.png)
+![Library Page](library_pg.png)
+![Preferences Page](preferences_pg.png)
 
-TODO! add more images...
 
 # Summary of Implemented Features
 Randomizer (index.html):
@@ -33,10 +34,12 @@ Watch History (history.html):
 - Uses Bootstrap for layout/grid/cards and Font Awesome for the search icon.
 
 My Library (library.html):
-- TODO!
+- Displays all of the movies in the current movie list.
+- JavaScript Functionality: Live search as you type by title and director. You can sort by genre and newest to oldest. Sorting by rating is not currently set up yet. The results update on input, so there is no submit button needed.
 
 My Preferences (preferences.html):
-- TODO!
+- Displays the user's current preferences as well as allows for the user to update them. This page will also show any movies the user might have blocked, however that has not been set up yet. 
+- JavaScript Functionality: The user can update the minimum rating for movies they want recommened as well as their favorite genres. There are a few genres listed and a minimum rating for now. Family friendly mode is also displayed as on. Moving forward this toggle needs to be updated to interact with the users current preferences. These preferences currently do not affect the outcome of the random movie picker, but as we develop the random algorithm, these preferences will start to matter. 
 
 Shared:
 - Consistent nav bar and visual theme (style.css) across all four pages.
@@ -45,4 +48,4 @@ Shared:
 - No backend or database yet. All movie data is mock data hardocded in movies.js. A backend is planned but not yet implemented. Most likely using The Movie Database (TMDB) API.
 - No user accounts or login. This would need to be updated to ensure individuals can see their own personal data on their movie account.
 - No deployment yet. The site currently only runs locally by opening the HTML files directly.
-- TODO! maybe add more here...
+- Preferences don't matter yet. Since we have not hooked anything up to a backend, the user preferences do not go anywhere at the moment.
