@@ -1,4 +1,4 @@
-// This javascript file will cover the library and user preferences page.
+// This javascript file will cover the user preferences page.
 
 "use strict";
 

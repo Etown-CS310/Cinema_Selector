@@ -7,6 +7,9 @@
     <title>Movie Library</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <script src="movies.js"></script>
+    <script src="library.js"></script>
 </head>
 
 <body>
@@ -54,12 +57,12 @@
     <div class="shelfInfo">
         <div class="movieTotal">
             <h3>Total Number of Movies:</h3>
-            <h2>#</h2>
+            <h2 id="totalCount">#</h2>
             <p>Movies in collection</p>
         </div>
         <div class="unwatched">
             <h3>Total Number of Unwatched Movies:</h3>
-            <h2>#</h2>
+            <h2 id="unwatchedCount">#</h2>
             <p>Movies still to watch</p>
         </div>
         <div class="runtime">
@@ -68,18 +71,8 @@
             <p>hours watched</p>
         </div>
     </div>
-    <div class="movie-display">
-        <div class="movie-info">
-            <div class="movie-header">
-                <div class="title">
-                    <h3 class="movie-title">Movie Title Here</h3>
-                    <span class="details">(year released) - Director</span>
-                </div>
-                <div class="rating">
-                    <span class="stars">How many out of 5 stars</span>
-                </div>
-            </div>
-        </div>
+    <div class="display-movie" id="movieList">
+        
     </div>
 </body>
 
