@@ -3,6 +3,8 @@
 // TODO: replace this with a real fetch() once database is in place
 // for now, posters are shown through URLs
 
+$("#navbar").load("navbar.html");
+
 function starsForRating(rating) {
     const full = Math.round(rating / 2);
     return "★".repeat(full) + "☆".repeat(5 - full);

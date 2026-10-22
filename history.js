@@ -1,6 +1,8 @@
 // handles search, genre filtering, and sorting for the watch history page
 // uses movieInventory array as well
 
+$("#navbar").load("navbar.html");
+
 function getFilteredHistory() {
     const searchTerm = document.getElementById("search").value.toLowerCase();
     const genre = document.getElementById("genre").value;

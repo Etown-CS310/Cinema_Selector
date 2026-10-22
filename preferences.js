@@ -8,6 +8,7 @@
     function init(){
         // const prefBtn = document.querySelector(".preferences");
         // prefBtn.addEventListener("click", savePreferences);
+        $("#navbar").load("navbar.html");
         const form = document.querySelector("form");
         form.addEventListener("submit", savePreferences);
     }

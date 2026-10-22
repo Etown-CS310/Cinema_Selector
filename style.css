@@ -2,9 +2,9 @@
 Palette: cream #E7D7C1, red #DD2D4A, dark red #8c1c13, mauve #a78a7f
 */
 
-* {
+/* * {
     box-sizing: border-box;
-}
+} */
 
 body {
     margin: 0;
@@ -222,7 +222,7 @@ history page
 /*
 library stats
 */
-
+/* 
 .shelfInfo{
     display: flex;
     align-items: center;
@@ -256,7 +256,7 @@ library stats
     color: #f1e7dc;
     font-size: 13px;
     margin: 0;
-}
+} */
 
 
 /*
@@ -316,7 +316,7 @@ button[type="submit"]:hover {
     gap: 16px;
 }
 
-.lib-info {
+/* .lib-info {
     display: flex;
     align-items: flex-start;
     gap: 16px;
@@ -330,27 +330,30 @@ button[type="submit"]:hover {
 
 .lib-info:hover{
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+} */
+.lib-card {
+    background-color: #E7D7C1;
+    border-radius: 16px;
+    transition: box-shadow 0.2s;
+}
+
+.lib-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 .lib-poster-wrap {
     width: 112px;
     height: 160px;
-    flex-shrink: 0;
-    border-radius: 12px;
-    overflow: hidden;
 }
 
 .lib-poster {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
     transition: transform 0.3s;
 }
 
 .lib-info:hover .lib-poster {
     transform: scale(1.05);
 }
-
+/* 
 .lib-body{
     flex: 1;
     min-width: 0;
@@ -378,13 +381,24 @@ button[type="submit"]:hover {
     margin: 0;
     font-size: 1.125rem;
     font-weight: 700;
-}
+} */
 
 .lib-details {
-    font-size: 0.75 rem;
     color: #DD2D4A;
 }
 
+.stat-card {
+    background-color: #a78a7f;
+    border: none;
+    border-radius: 16px;
+}
+
+.stat-card .card-subtitle,
+.stat-card .display-5,
+.stat-card small {
+    color: #fff;
+}
+/* 
 .lib-rating {
     display: flex;
     align-items: center;
@@ -415,4 +429,9 @@ button[type="submit"]:hover {
 .lib-tag.watched {
     background: #dff3e4;
     color: #1d6b35;
+} */
+
+.navigation{
+    display: flex;
+    align-items: center;
 }
