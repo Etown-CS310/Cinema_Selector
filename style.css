@@ -2,9 +2,10 @@
 Palette: cream #E7D7C1, red #DD2D4A, dark red #8c1c13, mauve #a78a7f
 */
 
-/* * {
+/* {
     box-sizing: border-box;
-} */
+}
+*/
 
 body {
     margin: 0;
@@ -72,6 +73,20 @@ a {
     transition: color 0.2s ease, background-color 0.2 ease;
 }
 
+/* 
+login link inside nav
+*/
+.nav a.nav-login {
+    background-color: #E7D7C1;
+    color: #8c1c13;
+    font-weight: 600;
+    margin-left: 12px;
+}
+
+.nav a.nav-login:hover {
+    background-color: #FAF3E7;
+    color: #8c1c13;
+}
 
 /*
 search/sort controls
@@ -153,11 +168,13 @@ movie cards
     gap: 4px;
 }
 
+/*
 #movie-container {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
 }
+*/
 
 .movie-content {
     display: flex;
@@ -202,8 +219,34 @@ movie cards
     font-weight: 600;
 }
 
+.rating-number {
+    color: #5c473f;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-left: 6px;
+}
+
 /*
-history page
+randomizer button
+*/
+
+.pick-btn {
+    background-color: #DD2D4A;
+    color: #fff;
+    border: none;
+    border-radius: 9999px;
+    font-weight: 600;
+    padding: 10px 28px;
+    transition: background-color 0.2s ease;
+}
+
+.pick-btn:hover {
+    background-color: #8c1c13;
+    color: #fff;
+}
+
+/*
+history page (also used by randomizer)
 */
 .history-poster {
     width: 250px;

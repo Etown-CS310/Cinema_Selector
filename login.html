@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Valley+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS: must load BEFORE style.css so our styles can override it -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- jquery (used to load the shared nav bar) -->
+    <script src="https://code.jquery.com/jquery-4.0.0.js"
+        integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+
+    <script src="login.js" defer></script>
+</head>
+
+<body>
+    <header id="navbar"></header>
+
+    <div class="container">
+        <h2>Log In</h2>
+        <p>Sign in to keep your library, watch history, and preferences.</p>
+
+        <!-- flag to show page is unfinished, needs backend working-->
+
+        <div class="alert alert-warning" role="alert">
+            Placeholder page: login is not connected yet. Accounts will be
+            added with the backend implementation.
+        </div>
+
+        <form id="login-form">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" class="form-control" placeholder="you@example.com" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" id="password" class="form-control" placeholder="Password" required>
+            </div>
+
+            <button type="submit">Log In</button>
+
+            <div id="login-message" class="alert alert-info mt-3 mb-0 d-none" role="alert"></div>
+        </form>
+    </div>
+</body>
+
+</html>

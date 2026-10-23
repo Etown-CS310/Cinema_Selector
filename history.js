@@ -42,7 +42,9 @@ function renderHistory() {
                     <h5 class="card-title">${movie.title}</h5>
                     <p class="card-text text-muted mb-1">(${movie.year}) - ${movie.director}</p>
 
-                    <p class="card-text">${starsForRating(movie.rating)}</p>
+                    <p class="card-text">${starsForRating(movie.rating)}
+                        <span class="rating-number">${movie.rating.toFixed(1)}/10</span>
+                    </p>
                     <p class="card-text"><small class="text-muted">Watched ${movie.dateWatched}</small></p>
                 </div>
             </div>

@@ -11,13 +11,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Valley+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="style.css">
 
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-4.0.0.js"
@@ -40,34 +40,23 @@
     </header>
     <!-- TODO: Set up a place for user login (use Firebase?) -->
     <!-- TODO: Cinema Selector movie picker set up - block out buttons, movie selection areas, etc. -->
-    <p>(This is the home page which has the movie picker!)</p>
 
-    <br>
-    <h2>Here's movies we think you would like!</h2>
+    <div class="container">
+        <p>(This is the home page which has the movie picker!)</p>
+        <h2 class="mb-4">Here's movies we think you would like!</h2>
 
-    <div id="movie-container">
-        <!-- JS fills this with 3 random movie cards -->
-    </div>
+        <!-- "row" makes this a bootstrap grid row; random.js fills it with 
+         col-md-4 cards -->
 
-    <br>
-
-    <button type="button" id="randomize-btn">Pick a Random Movie</button>
-
-    <!---
-    <div class="movie-display">
-        <div class="movie-info">
-            <div class="movie-header">
-                <div class="title">
-                    <h3 class="movie-title">Your Random Pick Will Appear Here</h3>
-                    <span class="details">(year) - Director</span>
-                </div>
-                <div class="rating">
-                    <span class="stars">★ ★ ★ ★ ☆</span>
-                </div>
-            </div>
+        <div id="movie-container" class="row">
+            <!-- js fills this with 3 random movie cards -->
         </div>
+
+        <button type="button" id="randomize-btn" class="btn btn-lg pick-btn mt-2">
+            Pick a Random Movie
+        </button>
     </div>
-    -->
+
 </body>
 
 </html>

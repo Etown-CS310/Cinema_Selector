@@ -19,24 +19,20 @@ function renderMovies() {
     const container = document.getElementById("movie-container");
     const picks = getRandomMovies(3);
 
+    // same bootstrapping as watch history
     container.innerHTML = picks.map(movie => `
-        <div class="movie-display">
-            <div class="movie-content">
-                <img src="${movie.poster}" alt="${movie.title} poster" class="movie-poster"></img>
-                <div class="movie-info">
-                    <div class="movie-header">
-                        <div class="title">
-                            <h3 class="movie-title">${movie.title}</h3>
-                            <span class="details">(${movie.year}) - ${movie.director}</span>
-                        </div>
-                        <div class="rating">
-                            <span class="stars">${starsForRating(movie.rating)}</span>
-                        </div>
-                    </div>
+        <div class="col-md-4 mb-4">
+            <div class="card history-card h-100 shadow sm">
+                <img src="${movie.poster}" alt="${movie.title} poster" class="card-img-top history-poster">
+                <div class="card-body">
+                    <h5 class="card-title movie-title">${movie.title}</h5>
+                    <p class="card-text mb-1">(${movie.year}) - ${movie.director}</p>
+                    <p class="card-text stars">${starsForRating(movie.rating)}
+                    <span class="rating-number">${movie.rating.toFixed(1)}/10</span></p>
                 </div>
             </div>
         </div>
-   `).join("<br>");
+   `).join("");
 }
 
 document.getElementById("randomize-btn").addEventListener("click", renderMovies);
