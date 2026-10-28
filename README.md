@@ -17,10 +17,10 @@ This is currently a static front-end project, with no server or database require
 No installs, npm packages, or environment setups are needed at this stage yet.
 
 # Screenshots
-![Randomizer Image](images/randomizer_pg.png)
-![History Page](images/history_pg.png)
-![Library Page](images/library_pg.png)
-![Preferences Page](images/preferences_pg.png)
+![Randomizer Image](frontend/images/randomizer_pg.png)
+![History Page](frontend/images/history_pg.png)
+![Library Page](frontend/images/library_pg.png)
+![Preferences Page](frontend/images/preferences_pg.png)
 
 
 # Summary of Implemented Features
