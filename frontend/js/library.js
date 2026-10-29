@@ -3,6 +3,9 @@
 "use strict";
 
 (function () {
+    const API_BASE = 'http://localhost:3000';
+
+    let allMovies = [];
     let movieList;
     let searchBar;
     let sortMovies;
@@ -19,8 +22,22 @@
         searchBar.addEventListener("input", updateLibrary);
         sortMovies.addEventListener("change", updateLibrary);
 
-        updateStats();
-        updateLibrary();
+        loadMovies();
+    }
+
+    function loadMovies() {
+        fetch(`${API_BASE}/movies`)
+        .then(res => res.json())
+        .then(movies => {
+            allMovies = movies;
+            updateStats();
+            updateLibrary();
+        })
+        .catch(err => {
+            console.error("Could not load movies: ", err);
+            document.getElementById("movieList").innerHTML = 
+            `<p class="text-center">Error with movie backend. Check if backend is running.</p>`;
+        });
     }
 
     function displayMovies(movies) {
@@ -56,8 +73,8 @@
     }
 
     function updateStats() {
-        document.getElementById("totalCount").textContent = movieInventory.length;
-        document.getElementById("unwatchedCount").textContent = movieInventory.filter(movie => !movie.watched).length;
+        document.getElementById("totalCount").textContent = allMovies.length;
+        document.getElementById("unwatchedCount").textContent = allMovies.filter(movie => !movie.watched).length;
     }
 
     function updateLibrary() {
