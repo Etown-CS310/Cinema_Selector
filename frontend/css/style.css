@@ -263,50 +263,10 @@ history page (also used by randomizer)
 }
 
 /*
-library stats
-*/
-/* 
-.shelfInfo{
-    display: flex;
-    align-items: center;
-    justify-items: center;
-    gap: 10px;
-    width: 80%;
-    margin: 30px;
-    border-radius: 16px;
-}
-
-.shelfInfo div{
-    background-color: #a78a7f;
-    width: 600px;
-    padding: 25px;
-}
-
-
-.shelfInfo h3 {
-    color: #fff;
-    font-size: 15px;
-    margin: 0 0 8px;
-}
-
-.shelfInfo h2 {
-    color: #fff;
-    font-size: 32px;
-    margin: 0 0 4px;
-}
-
-.shelfInfo p {
-    color: #f1e7dc;
-    font-size: 13px;
-    margin: 0;
-} */
-
-
-/*
 preferences form
 */
 
-form {
+/* form {
     background-color: #E7D7C1;
     padding: 24px 28px;
     border-radius: 16px;
@@ -332,8 +292,8 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
     background-color: #8c1c13;
-}
-
+} */
+/* 
 .myPreferences{
     background-color: #E7D7C1;
     padding: 24px 28px;
@@ -345,12 +305,51 @@ button[type="submit"]:hover {
 .prefs{
     display:flex;
     gap: 12px;
-}
+} */
 
 #fam{
     color: #DD2D4A;
 }
 
+h1, h2, h3, h4, h6{
+    color:#8c1c13;
+    font-weight: 600;
+}
+
+.pref-card{
+    background-color: #E7D7C1;
+    border: none;
+    border-radius: 16px;
+}
+
+.form-label{
+    font-weight: 500;
+    color: #8c1c13;
+}
+
+.form-control:focus, .form-select:focus{
+    border-color: #DD2D4A;
+    box-shadow: 0 0 0 0.25rem rgba(221, 45, 74, 0.25);
+}
+
+.form-check-input:checked{
+    background-color: #DD2D4A;
+    border-color: #DD2D4A;
+}
+
+.form-check-input:focus{
+    border-color: #DD2D4A;
+    box-shadow: 0 0 0 0.25rem rgba(221, 45, 74, 0.25);
+}
+
+.btn-primary{
+    --bs-btn-bg: #DD2D4A;
+    --bs-btn-border-color: #DD2D4A;
+    --bs-btn-hover-bg: #8c1c13;
+    --bs-btn-hover-border-color: #8c1c13;
+    --bs-btn-active-bg: #8c1c13;
+    --bs-btn-active-border-color: #8c1c13;
+}
 /* library movies */
 
 .display-movie{
@@ -359,21 +358,6 @@ button[type="submit"]:hover {
     gap: 16px;
 }
 
-/* .lib-info {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    padding: 20px;
-    border-radius: 16px;
-    background-color: #E7D7C1;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
-    transition: box-shadow 0.2s;
-}
-
-.lib-info:hover{
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-} */
 .lib-card {
     background-color: #E7D7C1;
     border-radius: 16px;
@@ -396,35 +380,6 @@ button[type="submit"]:hover {
 .lib-info:hover .lib-poster {
     transform: scale(1.05);
 }
-/* 
-.lib-body{
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.lib-movie-header{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 8px;
-}
-
-.lib-info .title{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 8px;
-}
-
-.lib-movie-title {
-    margin: 0;
-    font-size: 1.125rem;
-    font-weight: 700;
-} */
 
 .lib-details {
     color: #DD2D4A;
@@ -441,38 +396,6 @@ button[type="submit"]:hover {
 .stat-card small {
     color: #fff;
 }
-/* 
-.lib-rating {
-    display: flex;
-    align-items: center;
-}
-
-.lib-stars{
-    font-size: 0.875rem;
-    font-weight: 700;
-    color: #b07d00;
-}
-
-.lib-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-.lib-tag {
-    padding: 2px 10px;
-    border-radius: 999px;
-    font-size: 11px;
-    font-weight: 600;
-    background: #f0ece4;
-    color: #555555;
-    text-transform: capitalize;
-}
-
-.lib-tag.watched {
-    background: #dff3e4;
-    color: #1d6b35;
-} */
 
 .navigation{
     display: flex;

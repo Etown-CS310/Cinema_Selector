@@ -17,6 +17,7 @@
         e.preventDefault();
 
         let genre = document.querySelector("#genre").value;
+        
 
         let genreItem = document.createElement("li");
         genreItem.textContent = genre;
@@ -30,5 +31,8 @@
 
         let myRating = document.getElementById("minRating");
         myRating.textContent = rating;
+
+        let family = document.getElementById("familyFriendly").checked;
+        document.getElementById("fam").textContent = family ? "On" : "Off";
     }
 })();

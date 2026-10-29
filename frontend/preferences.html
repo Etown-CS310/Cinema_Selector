@@ -7,15 +7,17 @@
     <title>Preferences</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Valley+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Limelight&family=Valley+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="style.css">
 
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-4.0.0.js"
@@ -35,60 +37,67 @@
         </div> -->
     </header>
 
-    <h2>Movie Preferences</h2>
-    <p>This is where the user can update their preferences</p>
+    <main class="container py-4">
+        <h2>Movie Preferences</h2>
+        <p>This is where the user can update their preferences</p>
 
-    <div class="prefs">
-        <form>
-            <label for="genre">Favorite Genre:</label>
-            <select id="genre" name="genre">
-                <option value="">--Select a genre--</option>
-                <option value="Action">Action</option>
-                <option value="Comedy">Comedy</option>
-                <option value="Drama">Drama</option>
-                <option value="Horror">Horror</option>
-                <option value="Romance">Romance</option>
-                <option value="Scifi">Sci-Fi</option>
-                <option value="Thriller">Thriller</option>
-            </select>
+        <div class="row g-4">
+            <div class="col-12 col-md-4">
+                <form class="card pref-card h-100">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="genre" class="form-label">Favorite Genre:</label>
+                            <select id="genre" name="genre" class="form-select">
+                                <option value="">--Select a genre--</option>
+                                <option value="Action">Action</option>
+                                <option value="Comedy">Comedy</option>
+                                <option value="Drama">Drama</option>
+                                <option value="Horror">Horror</option>
+                                <option value="Romance">Romance</option>
+                                <option value="Scifi">Sci-Fi</option>
+                                <option value="Thriller">Thriller</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="rating" class="form-label">Minimum Rating:</label>
+                            <input type="number" id="rating" name="rating" class="form-control" min="0" max="10"
+                                step="0.5" placeholder="ex. 7">
+                        </div>
+                        <div class="form-check mb-4">
+                            <label class="form-check-label" for="'familyFriendly">Family Friendly Movies Only:</label>
+                            <input class="form-check-input" type="checkbox" id="familyFriendly" name="family-friendly">
+                        </div>
 
-            <br><br>
+                        <button type="submit" class="btn btn-primary rounded-pill px-4">Update Preferences</button>
+                    </div>
+                </form>
 
-            <label for="rating">Minimum Rating:</label>
-            <input type="number" id="rating" name="rating" min="0" max="10" step="0.5" placeholder="ex. 7">
-
-            <br><br>
-
-            <label>
-                <input type="checkbox" name="family_friendly">Family-Friendly Movies Only!
-            </label>
-
-            <br><br>
-
-            <button type="submit" class="preferences">Update Preferences</button>
-        </form>
-
-        <!-- Add a way to remove things from preferences -->
-        <div class="myPreferences">
-            <h2>My Preferences</h2>
-            <h3>Minimum Rating: <span id="minRating">4</span>/10 </h3>
-            <br>
-
-            <h3>My Favorite Genres:</h3>
-            <ul class="favGenres">
-                <li class="movieGenre">Action</li>
-                <li class="movieGenre">Comedy</li>
-                <li class="movieGenre">Romance</li>
-            </ul>
-
-            <br>
-            <h3>Family Friendly Only: <span id="fam">On</span> </h3>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="card pref-card h-100">
+                    <div class="card-body">
+                        <h2 class="h4">My Preferences</h2>
+                        <h3 class="h6 mt-3">Minimum Rating: <span id="minRating">4</span>/10</h3>
+                        <h3 class="h6 mt-4">Favorite Genres:</h3>
+                        <ul class="favGenres list-group list-group-flush">
+                            <li class="movieGenre list-group-item bg-transparent">Action</li>
+                            <li class="movieGenre list-group-item bg-transparent">Comedy</li>
+                            <li class="movieGenre list-group-item bg-transparent">Romance</li>
+                        </ul>
+                        <h3 class="h6 mt-4">Family Friendly Only: <span id="fam">On</span></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="card pref-card h-100">
+                    <div class="card-body">
+                        <h2 class="h4">Blocked Movies</h2>
+                        <p class="mb-0">These will not appear in you search.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="Blocked Movies">
-            <h2>Movies that you have blocked</h2>
-            <p>These will not appear in your search.</p>
-        </div>
-    </div>
+    </main>
 </body>
 
 </html>
