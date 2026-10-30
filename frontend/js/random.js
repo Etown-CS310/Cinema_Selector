@@ -62,6 +62,7 @@ function renderMovies() {
                     <p class="card-text mb-1">(${movie.year}) - ${movie.genre}</p>
                     <p class="card-text stars">${starsForRating(movie.rating)}
                     <span class="rating-number">${movie.rating.toFixed(1)}/10</span></p>
+                    <button class="btn btn-sm btn-outline-primary watched-btn" data-id="${movie.id}">Mark as Watched</button>
                 </div>
             </div>
         </div>
@@ -81,6 +82,23 @@ function loadMovies() {
                 `<p class="text-center">Couldn't load movies. Is the backend running?</p>`;
     });
 }
+
+document.getElementById("movie-container").addEventListener("click", event => {
+    if (!event.target.classList.contains("watched-btn")) return;
+
+    const button = event.target;
+    fetch(`${API_BASE}/history`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ movie_id: Number(button.dataset.id) })
+    })
+    .then (res => {
+        if (!res.ok) throw new Error ("Request failed");
+        button.textContent = "Added";
+        button.disabled = true;
+    })
+    .catch(err => console.error("Could not add to history:", err))
+});
 
 document.getElementById("randomize-btn").addEventListener("click", renderMovies);
 
