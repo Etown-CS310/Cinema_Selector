@@ -29,6 +29,19 @@ db.run(`CREATE TABLE IF NOT EXISTS watch_history (
   FOREIGN KEY (movie_id) REFERENCES movies(id)
 )`);
 
+// Need to double check that this is the information we want and that it can work with the users information we have.
+db.run(`CREATE TABLE IF NOT EXISTS preferences (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    genre1 VARCHAR(25),
+    genre2 VARCHAR(25),
+    genre3 VARCHAR(25),
+    certification VARCHAR(5),
+    rating INTEGER,
+    familyFriendly BOOLEAN NOT NULL,
+    includeWatched BOOLEAN NOT NULL
+)`);
+
 // movies ----------------
 app.get('/movies', (req, res) => {
     db.all('SELECT * FROM movies', [], (err, rows) => {
