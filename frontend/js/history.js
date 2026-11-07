@@ -42,8 +42,16 @@ function getFilteredHistory() {
 
 function renderHistory() {
     const container = document.getElementById("history-container");
+
+    // nothing watched at all
+    if (allHistory.length === 0) {
+        container.innerHTML = `<p class="text-muted">You haven't marked any movies as watched yet.</p>`;
+        return;
+    }
+
     const movies = getFilteredHistory();
 
+    // things are watched, but the search/filter hides them all
     if (movies.length === 0) {
         container.innerHTML = `<p class="text-muted">No movies match your search.</p>`;
         return;
@@ -56,16 +64,37 @@ function renderHistory() {
                 <div class="card-body">
                     <h5 class="card-title">${movie.title}</h5>
                     <p class="card-text text-muted mb-1">(${movie.year}) - ${movie.genre}</p>
-
                     <p class="card-text">${starsForRating(movie.rating)}
                         <span class="rating-number">${movie.rating.toFixed(1)}/10</span>
                     </p>
                     <p class="card-text"><small class="text-muted">Watched ${movie.date_watched}</small></p>
+                    <button class="btn btn-sm btn-outline-danger remove-btn" data-history-id="${movie.history_id}">
+                        Remove from History
+                    </button>
                 </div>
             </div>
         </div>
-        `).join("");
+    `).join("");
 }
+
+// "Remote from History" button
+document.getElementById("history-container").addEventListener("click", event => {
+    if (!event.target.classList.contains("remove-btn")) return;
+
+    const historyId = Number(event.target.dataset.historyId);
+
+    fetch(`${API_BASE}/history/${historyId}`, { method: "DELETE"})
+    .then(res => {
+        if (!res.ok) throw new Error("Request failed");
+
+        allHistory = allHistory.filter(movie => movie.history_id !== historyId);
+        renderHistory();
+    })
+    .catch(err => {
+        console.error("Could not remove from history:", err);
+        alert("Couldn't remove that movie. Is the backend running?");
+    });
+});
 
 function loadHistory() {
     fetch(`${API_BASE}/history`)

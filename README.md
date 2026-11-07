@@ -3,6 +3,9 @@ The Cinema Selector is a movie selector that uses your preferences and watching 
 
 Here is the link to the mock layouts from Google Stitch: https://stitch.withgoogle.com/projects/425297959112674698.
 
+# WORK IN PROGRESS! 
+(some of the info below is outdated...)
+
 # Project Description & Intended Users  
 Cinema Selector is a web app built for people who want to track a personal movie collection and struggle to decide what to watch. Rather than scrolling through a list, the app can randomly recommend a title from your library, keep a history of what you have already watched, and let you set viewing prefereneces (favorite genre, minimum rating, family-friendly filter) to tailor your future picks.
 

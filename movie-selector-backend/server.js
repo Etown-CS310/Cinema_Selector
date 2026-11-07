@@ -9,6 +9,9 @@ const db = new sqlite3.Database(path.join(__dirname, 'movies.db'));
 app.use(cors());
 app.use(express.json());
 
+// TODO: replace with the logged-in user's id once login works
+const TEMP_USER_ID = 1;
+
 
 // tables ----------------
 db.run(`CREATE TABLE IF NOT EXISTS movies (
@@ -42,6 +45,8 @@ db.run(`CREATE TABLE IF NOT EXISTS preferences (
     includeWatched BOOLEAN NOT NULL
 )`);
 
+db.run(`CREATE UNIQUE INDEX IF NOT EXISTS idx_preferences_user ON preferences(user_id)`);
+
 // movies ----------------
 app.get('/movies', (req, res) => {
     db.all('SELECT * FROM movies', [], (err, rows) => {
@@ -73,6 +78,55 @@ app.post('/history', (req, res) => {
         if (err) return res.status(500).json({ error: err.message });
         res.status(201).json({ id: this.lastID });
     });
+});
+
+// remove movie from watch history
+app.delete('/history/:id', (req, res) => {
+  db.run('DELETE FROM watch_history WHERE id = ?', [req.params.id], function (err) {
+    if (err) return res.status(500).json({ error: err.message });
+    if (this.changes === 0) return res.status(404).json({ error: 'History entry not found'});
+    res.json({message: 'Removed from history'});
+  });
+});
+
+// get preferences
+app.get('/preferences', (req, res) => {
+  db.get('SELECT * FROM preferences WHERE user_id = ?', [TEMP_USER_ID], (err, row) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(row || {}); // empty object if nothing saved yet
+  });
+});
+
+// save preferences - creates the row the first time, then updates it after
+app.put('/preferences', (req, res) => {
+  const { genre1, genre2, genre3, certification, rating, familyFriendly, includeWatched } = req.body;
+
+  const sql = `
+    INSERT INTO preferences (user_id, genre1, genre2, genre3, certification, rating, familyFriendly, includeWatched)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    ON CONFLICT(user_id) DO UPDATE SET
+      genre1 = excluded.genre1,
+      genre2 = excluded.genre2,
+      genre3 = excluded.genre3,
+      certification = excluded.certification,
+      rating = excluded.rating,
+      familyFriendly = excluded.familyFriendly,
+      includeWatched = excluded.includeWatched
+  `;
+
+  const params = [
+    TEMP_USER_ID,
+    genre1 || null, genre2 || null, genre3 || null,
+    certification || null,
+    rating || 0,
+    familyFriendly ? 1 : 0,
+    includeWatched ? 1 : 0
+  ];
+
+  db.run(sql, params, function (err) {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ message: 'Preferences saved' });
+  });
 });
 
 app.listen(3000, () => console.log('Server running on port 3000'));
