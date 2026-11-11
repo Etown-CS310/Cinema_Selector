@@ -2,11 +2,15 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const sqlite3 = require('sqlite3').verbose();
+const dotenv = require('dotenv');
 
+dotenv.config();
 const app = express();
 const db = new sqlite3.Database(path.join(__dirname, 'movies.db'));
 
-app.use(cors());
+app.use(cors({
+  origin: ['http://127.0.0.1:5500', 'http://localhost:5500']
+}));
 app.use(express.json());
 
 // TODO: replace with the logged-in user's id once login works
@@ -57,6 +61,18 @@ db.run(`CREATE TABLE IF NOT EXISTS preferences (
 // removed the line; certification VARCHAR(5)
 
 db.run(`CREATE UNIQUE INDEX IF NOT EXISTS idx_preferences_user ON preferences(user_id)`);
+
+//firebase login
+app.get('/api/firebase-config', (req, res) => {
+  res.json({
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.FIREBASE_APP_ID
+  });
+});
 
 // movies ----------------
 app.get('/movies', (req, res) => {
