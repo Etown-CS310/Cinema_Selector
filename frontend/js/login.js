@@ -4,7 +4,6 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
   onAuthStateChanged,
-  signOut,
 } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js';
 
 $("#navbar").load("navbar.html");
@@ -15,6 +14,7 @@ const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('password');
 const confirmInput = document.getElementById('confirm');
 const loginBtn = document.getElementById('login-btn');
+
 const registerBtn = document.getElementById('register-btn');
 const message = document.getElementById('login-message');
 
@@ -52,22 +52,16 @@ form.addEventListener('submit', async (event) => {
         setLoading(registerBtn, false);
     }
   } else {
+    if (!email || !password) return showMessage(message, 'Please enter your email and password.');
     setLoading(loginBtn, true, 'Logging in...');
     try {
         await signInWithEmailAndPassword(auth, email, password);
         // onAuthStateChanged will handle the redirect
     } catch (error) {
+        console.error(error.code, error.message);
         showMessage(message, friendlyError(error));
         setLoading(loginBtn, false);
     }
     }
 });
 
-// document.getElementById("login-form").addEventListener("submit", function (e) {
-//     e.preventDefault();
-
-//     const message = document.getElementById("login-message");
-//     message.textContent = "Login isn't connected yet. This is a placeholder until accounts are added.";
-
-//     message.classList.remove("d-none");
-// })

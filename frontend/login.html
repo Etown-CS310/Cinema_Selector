@@ -23,6 +23,7 @@
         integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
 
     <script src="js/login.js " type="module"></script>
+    <script type="module" src="js/navbar.js"></script>
 </head>
 
 <body>
@@ -30,7 +31,7 @@
 
     <div class="container">
         <h2>Log In</h2>
-        <p>Sign in to keep your library, watch history, and preferences.</p>
+        <p>Sign in to keep your library, watch history, and preferences. When signing in, you do not need to input your name and confirm your password.</p>
 
         <!-- flag to show page is unfinished, needs backend working-->
 <!-- 
@@ -57,10 +58,10 @@
 
             <div class="mb-3">
                 <label for="confirm" class="form-label">Confirm Password</label>
-                <input type="confirm" id="confirm" class="form-control" placeholder="Confirm Password" required>
+                <input type="password" id="confirm" class="form-control" placeholder="Confirm Password" required>
             </div>
 
-            <button id="login-button" type="submit">Log In</button>
+            <button id="login-btn" type="submit" formnovalidate>Log In</button>
             <button id="register-btn" type="submit" class="btn primary">Sign Up</button>
 
             <div id="login-message" class="alert alert-info mt-3 mb-0 d-none" role="alert"></div>
