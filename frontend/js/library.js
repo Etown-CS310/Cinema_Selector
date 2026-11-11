@@ -74,13 +74,13 @@
                 <p class="mb-0">${movie.overview || ""}</p>
                 <div class="d-flex gap-2">
                     <button class="btn btn-sm btn-outline-primary watched-btn" data-id="${movie.id}">Mark as Watched</button>
-                    <button class="btn btn-sm btn-outline-primary block-btn" data-id="${movie.id}">Block Movie</button>
                 </div>
                 </div>
             </div>
         </div>`
         ).join('');
     }
+// removed; <button class="btn btn-sm btn-outline-primary block-btn" data-id="${movie.id}">Block Movie</button>
 
     function updateStats() {
         document.getElementById("totalCount").textContent = allMovies.length;

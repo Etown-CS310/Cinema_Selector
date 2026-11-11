@@ -29,8 +29,19 @@ db.run(`CREATE TABLE IF NOT EXISTS watch_history (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   movie_id INTEGER NOT NULL,
   date_watched TEXT DEFAULT (date('now')),
-  FOREIGN KEY (movie_id) REFERENCES movies(id)
+  FOREIGN KEY (movie_id) REFERENCES movies(id),
+  FOREIGN KEY (user_id) REFERENCES users(user_id)
 )`);
+// ^ will need to add a line above; user_id INTEGER NOT NULL,
+
+// UNCOMMENT THIS AND RUN IT ONCE! THEN COMMENT IT BACK...
+// db.run(`ALTER TABLE watch_history ADD COLUMN user_id INTEGER NOT NULL DEFAULT 0`);
+
+db.run(`CREATE TABLE IF NOT EXISTS users (
+  user_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  email VARCHAR(45),
+  password VARCHAR(25)
+  )`);
 
 // Need to double check that this is the information we want and that it can work with the users information we have.
 db.run(`CREATE TABLE IF NOT EXISTS preferences (
@@ -39,11 +50,11 @@ db.run(`CREATE TABLE IF NOT EXISTS preferences (
     genre1 VARCHAR(25),
     genre2 VARCHAR(25),
     genre3 VARCHAR(25),
-    certification VARCHAR(5),
     rating INTEGER,
     familyFriendly BOOLEAN NOT NULL,
     includeWatched BOOLEAN NOT NULL
 )`);
+// removed the line; certification VARCHAR(5)
 
 db.run(`CREATE UNIQUE INDEX IF NOT EXISTS idx_preferences_user ON preferences(user_id)`);
 

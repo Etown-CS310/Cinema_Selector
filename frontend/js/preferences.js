@@ -27,7 +27,7 @@
         .then(res => res.json())
         .then(row => {
             favoriteGenres = [row.genre1, row.genre2, row.genre3].filter(Boolean);
-            document.getElementById("cert").value = row.certification || "";
+            // document.getElementById("cert").value = row.certification || "";
             document.getElementById("rating").value = row.rating || "";
             document.getElementById("familyFriendly").checked = Boolean(row.familyFriendly);
             document.getElementById("incWatched").checked = Boolean(row.includeWatched);
@@ -104,7 +104,7 @@
             genre1: favoriteGenres[0],
             genre2: favoriteGenres[1],
             genre3: favoriteGenres[2],
-            certification: document.getElementById("cert").value,
+            // certification: document.getElementById("cert").value,
             rating: Number(document.getElementById("rating").value) || 0,
             familyFriendly: document.getElementById("familyFriendly").checked,
             includeWatched: document.getElementById("incWatched").checked
