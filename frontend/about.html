@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Cinema Selector</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Valley+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-4.0.0.js"
+        integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header id="navbar"></header>
+
+    <main class="container py-4">
+        <h2>About Cinema Selector</h2>
+
+        <section class="mb-4">
+            <h3 class="h5">The Project</h3>
+            <p>
+                Cinema Selector helps you decide what to watch. It recommends movies based on your
+                watch history and preferences, so the more you use it, the better the picks get.
+            </p>
+            <p>
+                Rather than scrolling through a list, the app can randomly recommend a title from your 
+                library, keep a history of what you have already watched, and let you set viewing 
+                prefereneces (favorite genre, minimum rating, family-friendly filter) to tailor your future picks.
+            </p>
+        </section>
+
+        <section class="mb-4">
+            <h3 class="h5">Our Team</h3>
+            <ul>
+                <li>Katia Daly</li>
+                <li>Kathy Saldana Renteria</li>
+            </ul>
+            <p>Built for our web development class at Elizabethtown College.</p>
+        </section>
+
+        <section class="mb-4">
+            <h3 class="h5">Credits</h3>
+            <div class="tmdb-attribution">
+                <a href="https://www.themoviedb.org" target="_blank" rel="noopener noreferrer">
+                    <img src="images/logo.png" alt="The Movie Database (TMDB) logo" class="tmdb-logo">
+                </a>
+                <p class="tmdb-disclaimer">
+                    This website uses TMDB and the TMDB APIs but is not endorsed, certified,
+                    or otherwise approved by TMDB.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        $("#navbar").load("navbar.html");
+    </script>
+    
+</body>
+</html>
