@@ -40,6 +40,7 @@ Preferences currently uses a temporary user id until login is connected to the A
 - Method: GET. Endpoint: /preferences. Status Codes: 200, 500. Purpose: Get saved preferences.
 - Method: PUT. Endpoint: /preferences. Status Codes: 200, 500. Purpose: Create or update preferences.
 - Method: GET. Endpoint: /api/firebase-config. Status Codes: 200. Purpose: Firebase config for the login page.
+- Method: POST. Endpoint: /api/users/sync. Status Codes: 200, 401, 500. Purpose: Sync the user logins from firebase into our users table. 
 
 Examples:
 - GET /movies
