@@ -72,10 +72,11 @@ db.run(`CREATE TABLE IF NOT EXISTS watch_history (
 //firebase won't give us passwords so if possible they should stay stored there for privacy.
 db.run(`CREATE TABLE IF NOT EXISTS users (
   user_id INTEGER PRIMARY KEY AUTOINCREMENT,
-  firebase_uid TEXT
+  firebase_uid TEXT,
   email TEXT,
   display_name TEXT
   )`);
+
 db.run(`CREATE UNIQUE INDEX IF NOT EXISTS idx_users_firebase_uid ON users(firebase_uid)`);
 
 //UNCOMMENT these lines and run them once to update users table, then recomment them
