@@ -16,9 +16,10 @@ Tech: HTML/CSS/JS, Bootstrap. Node.js + Express. SQLite. TMDB API. Firebase.
 Requires Node.js 18+, VS Code with Live Server, a TMDB account, and a Firebase account.
 1) Install dependencies using these commands in terminal: git clone <repo-url>... cd Cinema_Selector/movie-selector-backend... npm install
 2) Create backend/.env file (see '.env.example' for details): The TMDB token is under TMDB Setting, at API. The Firebase values are under Firebase Project Settings, at your apps.
-3) Set up the database to create movies.db using this command: npm run seed
-4) Start the backend on http://localhost:3000 using this command: npm start
-5) Open the frontend by going to the frontend/index.html page then opening with Live Server. Keep the backend running.
+3) You will also need to download the service account key from firebase. More detailed instructions for how to do this are located in the loginNotes file in the backend folder.
+4) Set up the database to create movies.db using this command: npm run seed
+5) Start the backend on http://localhost:3000 using this command: npm start
+6) Open the frontend by going to the frontend/index.html page then opening with Live Server. Keep the backend running.
 
 # Database Design
 SQLite database in movie-selector-backend/movies.db:
