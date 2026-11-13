@@ -42,13 +42,15 @@
         
         if (favoriteGenres.length === 0) {
             list.innerHTML = `<li class="list-group-item bg-transparent text-muted">None yet</li>`;
-        } else {
+        }else if (favoriteGenres.length <= 3){
             list.innerHTML = favoriteGenres.map(genre => `
                 <li class="movieGenre list-group-item bg-transparent d-flex justify-content-between align-items-center">
                 ${genre}
                 <button type="button" class="btn-close remove-genre" data-genre="${genre}" aria-label="Remove ${genre}"></button>
                 </li>
             `).join("");
+        } else {
+            list.innerHTML = `<li class="list-group-item bg-transparent text-muted">You can only add 3 genres at a time. Remove one genre to add another.</li>`;
         }
 
         // document.getElementById("certDisplay").textContent = document.getElementById("cert").value || "Any";

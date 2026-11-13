@@ -3,6 +3,34 @@ const cors = require('cors');
 const path = require('path');
 const sqlite3 = require('sqlite3').verbose();
 const dotenv = require('dotenv');
+const admin = require('firebase-admin');
+
+admin.initializeApp({
+  credential: admin.credential.cert(require('./serviceAccountKey.json')),
+});
+
+function getToken(req){
+  const h = req.headers.authorization || '';
+  return h.startsWith('Bearer') ? h.slice(7) : null;
+}
+
+async function requireAuth(req, res, next){
+  const token = getToken(req);
+  if(!token){
+     return res.status(401).json({ error: 'Missing Token'});
+  }
+  try{
+    const decoded = await admin.auth().verifyIdToken(token);
+    db.get('SELECT user_id FROM users WHERE firebase_uid = ?', [decoded.uid], (err, row) => {
+      if(err) return res.status(500).json({error: err.message});
+      if(!row) return res.status(404).json({error: 'User not synced yet'});
+      req.userId = row.user_id;
+      next();
+    });
+  } catch {
+    res.status(401).json({error: 'Invalid token'});
+  }
+}
 
 dotenv.config();
 const app = express();
@@ -15,7 +43,6 @@ app.use(express.json());
 
 // TODO: replace with the logged-in user's id once login works
 const TEMP_USER_ID = 1;
-
 
 // tables ----------------
 db.run(`CREATE TABLE IF NOT EXISTS movies (
@@ -42,11 +69,20 @@ db.run(`CREATE TABLE IF NOT EXISTS watch_history (
 // UNCOMMENT THIS AND RUN IT ONCE! THEN COMMENT IT BACK...
 // db.run(`ALTER TABLE watch_history ADD COLUMN user_id INTEGER NOT NULL DEFAULT 0`);
 
+//firebase won't give us passwords so if possible they should stay stored there for privacy.
 db.run(`CREATE TABLE IF NOT EXISTS users (
   user_id INTEGER PRIMARY KEY AUTOINCREMENT,
-  email VARCHAR(45),
-  password VARCHAR(25)
+  firebase_uid TEXT
+  email TEXT,
+  display_name TEXT
   )`);
+db.run(`CREATE UNIQUE INDEX IF NOT EXISTS idx_users_firebase_uid ON users(firebase_uid)`);
+
+//UNCOMMENT these lines and run them once to update users table, then recomment them
+//You will get an error but it should still update the db
+// db.run(`ALTER TABLE users ADD COLUMN firebase_uid TEXT`, () => {});
+// db.run(`ALTER TABLE users ADD COLUMN display_name TEXT`, () => {});
+
 
 // Need to double check that this is the information we want and that it can work with the users information we have.
 db.run(`CREATE TABLE IF NOT EXISTS preferences (
@@ -153,6 +189,30 @@ app.put('/preferences', (req, res) => {
     if (err) return res.status(500).json({ error: err.message });
     res.json({ message: 'Preferences saved' });
   });
+});
+
+app.post('/api/users/sync', async (req, res) => {
+  const token = getToken(req);
+  if(!token) return res.status(401).json({error: 'Missing token'});
+  try{
+    const decoded = await admin.auth().verifyIdToken(token);
+    const sql = `
+      INSERT INTO users (firebase_uid, email, display_name)
+      VALUES (?, ?, ?)
+      ON CONFLICT(firebase_uid) DO UPDATE SET
+        email = excluded.email,
+        display_name = excluded.display_name
+    `;
+    db.run(sql, [decoded.uid, decoded.email || null, decoded.name || null], (err) => {
+      if(err) return res.status(500).json({error: err.message});
+      db.get('SELECT user_id FROM users WHERE firebase_uid = ?', [decoded.uid], (e, row) => {
+        if(e) return res.status(500).json({error: e.message});
+        res.json({user_id: row.user_id});
+      });
+    });
+  } catch {
+    res.status(401).json({error: 'Invalid token'});
+  }
 });
 
 app.listen(3000, () => console.log('Server running on port 3000'));

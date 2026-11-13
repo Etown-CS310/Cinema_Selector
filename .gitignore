@@ -147,3 +147,5 @@ vite.config.ts.timestamp-*
 
 # SQLite database
 *.db
+
+serviceAccountKey.json

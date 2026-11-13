@@ -8,6 +8,19 @@ import {
 
 $("#navbar").load("navbar.html");
 
+async function syncUser(user) {
+  try {
+    const token = await user.getIdToken(true);
+    const res = await fetch('http://localhost:3000/api/users/sync', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    console.log('sync response:', res.status, await res.text());
+  } catch (err) {
+    console.error('User sync failed:', err);
+  }
+}
+
 const form = document.getElementById('login-form');
 const nameInput = document.getElementById('name');
 const emailInput = document.getElementById('email');
@@ -20,8 +33,9 @@ const message = document.getElementById('login-message');
 
 let creatingAccount = false;
 
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, async (user) => {
   if (user && !creatingAccount){
+    await syncUser(user);
     window.location.href = '/frontend/index.html';
   } 
 });
@@ -45,6 +59,7 @@ form.addEventListener('submit', async (event) => {
     try {
         const { user } = await createUserWithEmailAndPassword(auth, email, password);
         await updateProfile(user, { displayName: name });
+        await syncUser(user);
         window.location.href = '/frontend/index.html';
     } catch (error) {
         creatingAccount = false;
