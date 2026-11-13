@@ -32,6 +32,7 @@ db.run(`CREATE TABLE IF NOT EXISTS movies (
 db.run(`CREATE TABLE IF NOT EXISTS watch_history (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   movie_id INTEGER NOT NULL,
+  user_id INTEGER NOT NULL DEFAULT 0,
   date_watched TEXT DEFAULT (date('now')),
   FOREIGN KEY (movie_id) REFERENCES movies(id),
   FOREIGN KEY (user_id) REFERENCES users(user_id)
@@ -126,16 +127,15 @@ app.get('/preferences', (req, res) => {
 
 // save preferences - creates the row the first time, then updates it after
 app.put('/preferences', (req, res) => {
-  const { genre1, genre2, genre3, certification, rating, familyFriendly, includeWatched } = req.body;
+  const { genre1, genre2, genre3, rating, familyFriendly, includeWatched } = req.body;
 
   const sql = `
-    INSERT INTO preferences (user_id, genre1, genre2, genre3, certification, rating, familyFriendly, includeWatched)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO preferences (user_id, genre1, genre2, genre3, rating, familyFriendly, includeWatched)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
     ON CONFLICT(user_id) DO UPDATE SET
       genre1 = excluded.genre1,
       genre2 = excluded.genre2,
       genre3 = excluded.genre3,
-      certification = excluded.certification,
       rating = excluded.rating,
       familyFriendly = excluded.familyFriendly,
       includeWatched = excluded.includeWatched
@@ -144,7 +144,6 @@ app.put('/preferences', (req, res) => {
   const params = [
     TEMP_USER_ID,
     genre1 || null, genre2 || null, genre3 || null,
-    certification || null,
     rating || 0,
     familyFriendly ? 1 : 0,
     includeWatched ? 1 : 0
