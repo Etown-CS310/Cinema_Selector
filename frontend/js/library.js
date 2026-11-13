@@ -6,6 +6,7 @@
     const API_BASE = 'http://localhost:3000';
 
     let allMovies = [];
+    let watchedIds = new Set();
     let movieList;
     let searchBar;
     let sortMovies;
@@ -23,11 +24,29 @@
 
         searchBar.addEventListener("input", updateLibrary);
         sortMovies.addEventListener("change", updateLibrary);
+        movieList.addEventListener("click", markWatched);
 
         loadMovies();
     }
 
     function loadMovies() {
+        Promise.all([
+            fetch(`${API_BASE}/movies`).then(res => res.json()),
+            fetch(`${API_BASE}/history`).then(res => res.json())
+        ])
+            .then(([movies, history]) => {
+                allMovies = movies;
+                watchedIds = new Set(history.map(movie => movie.id));
+                buildGenreOptions();
+                updateStats();
+                updateLibrary();
+            })
+            .catch(err => {
+                console.error("Could not load movies: ", err);
+                document.getElementById("movieList").innerHTML =
+                    `<p class="text-center">Error with movie backend. Check if backend is running.</p>`;
+            });
+        /*
         fetch(`${API_BASE}/movies`)
             .then(res => res.json())
             .then(movies => {
@@ -41,6 +60,12 @@
                 document.getElementById("movieList").innerHTML =
                     `<p class="text-center">Error with movie backend. Check if backend is running.</p>`;
             });
+        */
+    }
+
+    // true if the movie is in the watch histroy
+    function isWatched(movie) {
+        return watchedIds.has(movie.id);
     }
 
     function displayMovies(movies) {
@@ -61,30 +86,54 @@
                         <h3 class="h5 fw-bold mb-0">${movie.title}</h3>
                         <small class="lib-details">(${movie.year})</small>
                     </div>
-                    <span class="fw-bold text-warning-emphasis">${movie.rating}/10</span>
+                    <span class="fw-bold text-warning-emphasis">${Number(movie.rating).toFixed(2)}/10</span>
                 </div>
                 <div class="d-flex flex-wrap gap-2">
                     ${getGenres(movie).map(g =>
                 `<span class="badge rounded-pill text-bg-light border text-capitalize">${g}</span>`
             ).join("")}                    
-                    <span class="badge rounded-pill ${movie.watched ? "text-bg-success" : "text-bg-secondary"}">
-                        ${movie.watched ? "Watched" : "Unwatched"}
+                    <span class="badge rounded-pill ${isWatched(movie) ? "text-bg-success" : "text-bg-secondary"}">
+                        ${isWatched(movie) ? "Watched" : "Unwatched"}
                     </span>
                 </div>
                 <p class="mb-0">${movie.overview || ""}</p>
                 <div class="d-flex gap-2">
-                    <button class="btn btn-sm btn-outline-primary watched-btn" data-id="${movie.id}">Mark as Watched</button>
+                    <button class="btn btn-sm btn-outline-primary watched-btn" data-id="${movie.id}" ${isWatched(movie) ? "disabled" : ""}>Mark as Watched</button>
                 </div>
                 </div>
             </div>
         </div>`
         ).join('');
     }
-// removed; <button class="btn btn-sm btn-outline-primary block-btn" data-id="${movie.id}">Block Movie</button>
+
+    // runs when anything inside movieList is clicked
+    function markWatched(event) {
+        if (!event.target.classList.contains("watched-btn")) return;
+
+        const button = event.target;
+        const movieId = Number(button.dataset.id);
+        button.disabled = true;
+
+        fetch(`${API_BASE}/history`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ movie_id: movieId })
+        })
+        .then(res => {
+            if (!res.ok) throw new Error("Request failed");
+            watchedIds.add(movieId);
+            updateStats();
+            updateLibrary();
+        })
+        .catch(err => {
+            console.error("Could not add to history:", err);
+            button.disabled = false;
+        });
+    }
 
     function updateStats() {
         document.getElementById("totalCount").textContent = allMovies.length;
-        document.getElementById("unwatchedCount").textContent = allMovies.filter(movie => !movie.watched).length;
+        document.getElementById("unwatchedCount").textContent = allMovies.filter(movie => !isWatched(movie)).length;
     }
 
     function buildGenreOptions() {

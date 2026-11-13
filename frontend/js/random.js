@@ -120,14 +120,6 @@ function pickMovies(count) {
     return shuffled.slice(0, count);
 }
 
-
-
-// can delete this function soon once renderMovies is fixed
-function getRandomMovies(count) {
-    const shuffled = [...allMovies].sort(() => Math.random() - 0.5);
-    return shuffled.slice(0, count);
-}
-
 function renderMovies() {
     const container = document.getElementById("movie-container");
     const picks = pickMovies(3);

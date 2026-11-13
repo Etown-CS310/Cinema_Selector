@@ -51,7 +51,7 @@
             `).join("");
         }
 
-        document.getElementById("certDisplay").textContent = document.getElementById("cert").value || "Any";
+        // document.getElementById("certDisplay").textContent = document.getElementById("cert").value || "Any";
         document.getElementById("minRating").textContent = Number(document.getElementById("rating").value) || 0;
         document.getElementById("fam").textContent = document.getElementById("familyFriendly").checked ? "On" : "Off";
         document.getElementById("incWatchedDisplay").textContent = document.getElementById("incWatched").checked ? "On" : "Off";
